@@ -1,5 +1,7 @@
 kernel:
   image: linuxkit/kernel:4.14.40
+  #image: linuxkit/kernel:4.14.41
+  #image: linuxkit/kernel:4.9.78
   cmdline: "console=tty0 console=ttyS0"
 init:
   - linuxkit/init:c79d7587fcd0a195b8a3ecafe428a30e735cf2b4
@@ -40,7 +42,7 @@ services:
     image: linuxkit/sshd:5544de2376475f6685e12bdc10bfe49f4695873a
     cgroupsPath: systemreserved/sshd
   - name: kubelet
-    image: linuxkit/kubelet:bcff9a97b3ecaf204ca7ee122f5a071a3dc97d4c
+    image: leoh0/kubelet:8fdfb5d3000337dfd142f6d34563a2b86d244a80
     cgroupsPath: podruntime/kubelet
 files:
   - path: etc/linuxkit.yml

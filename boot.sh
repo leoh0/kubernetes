@@ -2,6 +2,8 @@
 
 set -e
 
+: ${KUBE_PREFIX:=weave}
+
 : ${KUBE_MASTER_VCPUS:=2}
 : ${KUBE_MASTER_MEM:=1024}
 : ${KUBE_MASTER_DISK:=4G}
@@ -25,7 +27,7 @@ suffix=".iso"
 [ -n "${KUBE_EFI}" ] && suffix="-efi.iso" && uefi="--uefi"
 
 if [ $# -eq 0 ] ; then
-    img="kube-master"
+    img="${KUBE_PREFIX}-kube-master"
     # If $KUBE_MASTER_AUTOINIT is set, including if it is set to ""
     # then we configure for auto init. If it is completely unset then
     # we do not.
@@ -36,7 +38,7 @@ if [ $# -eq 0 ] ; then
 	kubeadm_data="${kubeadm_data:+$kubeadm_data, }\"untaint-master\": { \"content\": \"\" }"
     fi
 
-    state="kube-master-state"
+    state="${KUBE_PREFIX}-kube-master-state"
 
     : ${KUBE_VCPUS:=$KUBE_MASTER_VCPUS}
     : ${KUBE_MEM:=$KUBE_MASTER_MEM}
@@ -53,7 +55,7 @@ elif [ $# -ge 1 ] ; then
 	    ;;
 	*) ;;
     esac
-    img="kube-node"
+    img="${KUBE_PREFIX}-kube-node"
     name="node-${1}"
     shift
 
@@ -61,7 +63,7 @@ elif [ $# -ge 1 ] ; then
 	kubeadm_data="\"join\": { \"content\": \"${*}\" }"
     fi
 
-    state="kube-${name}-state"
+    state="${KUBE_PREFIX}-kube-${name}-state"
 
     : ${KUBE_VCPUS:=$KUBE_NODE_VCPUS}
     : ${KUBE_MEM:=$KUBE_NODE_MEM}

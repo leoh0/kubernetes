@@ -42,7 +42,7 @@ elif [ -d /run/config/kubeadm ] ; then
 	kubeadm join --ignore-preflight-errors=all $(cat /run/config/kubeadm/join)
 	await=/etc/kubernetes/bootstrap-kubelet.conf
     fi
-elif [ -e /run/config/userdata ] ; then
+elif [ -e /run/config/userdata ] && [ -s /run/config/userdata ] ; then
     echo "kubelet.sh: joining cluster with metadata \"$(cat /run/config/userdata)\""
     kubeadm join --ignore-preflight-errors=all $(cat /run/config/userdata)
     await=/etc/kubernetes/bootstrap-kubelet.conf

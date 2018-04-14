@@ -17,10 +17,10 @@ KUBE_BASENAME ?= kube-
 all: master node
 
 master: yml/kube.yml yml/$(KUBE_RUNTIME).yml yml/$(KUBE_RUNTIME)-master.yml yml/$(KUBE_NETWORK).yml $(KUBE_EXTRA_YML)
-	linuxkit $(LINUXKIT_ARGS) build $(LINUXKIT_BUILD_ARGS) -name $(KUBE_BASENAME)master $(KUBE_FORMAT_ARGS) $^
+	linuxkit $(LINUXKIT_ARGS) build $(LINUXKIT_BUILD_ARGS) -name $(KUBE_NETWORK)-$(KUBE_BASENAME)master $(KUBE_FORMAT_ARGS) $^
 
 node: yml/kube.yml yml/$(KUBE_RUNTIME).yml yml/$(KUBE_NETWORK).yml $(KUBE_EXTRA_YML)
-	linuxkit $(LINUXKIT_ARGS) build $(LINUXKIT_BUILD_ARGS) -name $(KUBE_BASENAME)node $(KUBE_FORMAT_ARGS) $^
+	linuxkit $(LINUXKIT_ARGS) build $(LINUXKIT_BUILD_ARGS) -name $(KUBE_NETWORK)-$(KUBE_BASENAME)node $(KUBE_FORMAT_ARGS) $^
 
 yml/weave.yml: kube-weave.yaml
 
