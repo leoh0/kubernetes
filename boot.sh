@@ -22,7 +22,7 @@ set -e
 [ "$(uname -s)" = "Darwin" ] && KUBE_EFI=1
 
 suffix=".iso"
-[ -n "${KUBE_EFI}" ] && suffix="-efi.iso" && uefi="--uefi"
+[ -n "${KUBE_EFI}" ] && suffix="-efi.iso" && uefi="--uefi" && iso="--iso"
 
 if [ $# -eq 0 ] ; then
     img="kube-master"
@@ -97,4 +97,4 @@ if [ -n "${metadata}" ] ; then
     echo "${metadata}" > $state/metadata.json
 fi
 
-exec linuxkit run ${KUBE_RUN_ARGS} -networking ${KUBE_NETWORKING} -cpus ${KUBE_VCPUS} -mem ${KUBE_MEM} -state "${state}" -disk size=${KUBE_DISK} -data-file $state/metadata.json ${uefi} "${img}${suffix}"
+exec linuxkit run ${KUBE_RUN_ARGS} -networking ${KUBE_NETWORKING} -cpus ${KUBE_VCPUS} -mem ${KUBE_MEM} -state "${state}" -disk size=${KUBE_DISK} -data-file $state/metadata.json ${iso} ${uefi} "${img}${suffix}"
