@@ -85,5 +85,5 @@ exec kubelet --kubeconfig=/etc/kubernetes/kubelet.conf \
 	      --cadvisor-port=0 \
 	      --kube-reserved-cgroup=podruntime \
 	      --system-reserved-cgroup=systemreserved \
-	      --cgroup-root=kubepods \
+	      --cgroup-root=/kubepods \
 	      $KUBELET_ARGS $@
