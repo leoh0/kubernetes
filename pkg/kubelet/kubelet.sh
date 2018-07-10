@@ -2,6 +2,12 @@
 # Kubelet outputs only to stderr, so arrange for everything we do to go there too
 exec 1>&2
 
+# for aws mtu problem
+if [ "$(ip r | grep 9001)" != "" ]; then
+    ip r | grep 9001 | sed 's/9001/1500/g;s/^/ip route change /g' > /root/route
+    sh /root/route
+fi
+
 if [ -e /etc/kubelet.sh.conf ] ; then
     . /etc/kubelet.sh.conf
 fi

@@ -42,7 +42,7 @@ services:
     image: linuxkit/sshd:5544de2376475f6685e12bdc10bfe49f4695873a
     cgroupsPath: systemreserved/sshd
   - name: kubelet
-    image: leoh0/kubelet:8fdfb5d3000337dfd142f6d34563a2b86d244a80
+    image: leoh0/kubelet:fdcc2f61d7519868cc9fa009f71bf4e23174bcac
     cgroupsPath: podruntime/kubelet
 files:
   - path: etc/linuxkit.yml
