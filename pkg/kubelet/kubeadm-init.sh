@@ -67,7 +67,6 @@ etcd:
   - http://CHANGE:2379
 tokenTTL: 0s
 apiServerExtraArgs:
-  admission-control: NamespaceLifecycle,LimitRanger,ServiceAccount,DefaultStorageClass,DefaultTolerationSeconds,ResourceQuota
   endpoint-reconciler-type: lease
 ''' > /etc/kubernetes/kubeadm.yaml
     sed -i "s/CHANGE/$IP/g" /etc/kubernetes/kubeadm.yaml

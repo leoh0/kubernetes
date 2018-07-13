@@ -1,3 +1,5 @@
 files:
   - path: /etc/kubeadm/kube-system.init/50-cilium.yaml
     source: kube-cilium.yaml
+  - path: /etc/kubeadm/kube-system.init/49-router.yaml
+    source: kube-router.yaml
